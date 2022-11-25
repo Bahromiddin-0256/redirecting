@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Redirecting</title>
+</head>
+<body>
+<div id="app">
+    {{ url }}
+    [[ data_f ]]
+</div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.esm.browser.js';
+
+    new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            message: 'Hello Vue!',
+            data_f: {% if data %} {{ data }} {% else %} null {% endif %},
+            host: {% if request.build_absolute_uri %} "{{ request.build_absolute_uri }}"  {% else %} null {% endif %},
+        },
+        mounted() {
+            console.log(this.data_f);
+            {% if url %}
+                setTimeout(() => {
+                    window.location.href = '{{ red_url }}' + this.data_f.product_slug;
+                }, "1000")
+            {% endif %}
+        },
+        methods: {}
+    });
+</script>
+
+
+</html>
