@@ -20,5 +20,6 @@ from core.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('<path:j>', IndexView.as_view()),
     path('', IndexView.as_view()),
 ]
