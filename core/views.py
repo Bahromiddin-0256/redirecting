@@ -18,7 +18,7 @@ class IndexView(TemplateView):
         api = f'http://munir-admin.xn--h28h.uz/api/v1/audio_links/retrieve/'
         context['api'] = api
         context['url'] = url
-        context['red_url'] = 'munirapp://org.uicgroup.munir/product/ghdsfj'
+        context['red_url'] = 'munirapp://books/product_slug/'
         res = requests.get(f'http://munir-admin.xn--h28h.uz/api/v1/audio_links/retrieve/?link={url}')
         if res.status_code == 200:
             context['data'] = mark_safe(json.dumps(res.json()))

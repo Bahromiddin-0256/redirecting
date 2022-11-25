@@ -27,10 +27,10 @@
             host: {% if request.build_absolute_uri %} "{{ request.build_absolute_uri }}"  {% else %} null {% endif %},
         },
         mounted() {
-            console.log(this.data_f);
+            console.log('{{ red_url }}'.replace("product_slug", this.data_f.product_slug));
             {% if url %}
                 setTimeout(() => {
-                    window.location.href = '{{ red_url }}' + this.data_f.product_slug;
+                    window.location.href = '{{ red_url }}'.replace("product_slug", this.data_f.product_slug);
                 }, "1000")
             {% endif %}
         },
